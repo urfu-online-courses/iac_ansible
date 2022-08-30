@@ -1,0 +1,45 @@
+---
+- hosts: all
+  name: Play for API AI App
+
+  vars:
+    git_repo_link: https://github.com/urfu-online-courses/ml_fastapi.git
+    project_path: /home/andrey/projects/ml_fastapi
+    project_venv: /home/andrey/python_env/ai_api_demo_app
+
+  tasks:
+    - name: Install aptitude
+      become: true
+      ansible.builtin.apt:
+        name: aptitude
+        state: present
+        update_cache: true
+
+    - name: Install required system packages
+      become: true
+      ansible.builtin.apt:
+        pkg:
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+          - git
+        state: present
+        update_cache: true
+
+    - name: Install Wheel
+      become: true
+      ansible.builtin.pip:
+        name:
+          - wheel
+
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: '{{ git_repo_link }}'
+        version: main
+        dest: '{{ project_path }}'
+
+    - name: Install Required Python Packages
+      ansible.builtin.pip:
+        requirements: '{{ project_path }}/requirements.txt'
+        virtualenv: '{{ project_venv }}'
+
