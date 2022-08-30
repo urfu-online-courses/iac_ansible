@@ -8,7 +8,15 @@ jobs:
     steps:
       # Important: This sets up your GITHUB_WORKSPACE environment variable
       - uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: |
+          pip install ansible-lint
+          ansible-galaxy collection install community.docker
+          
+      - name: Ansible lint
+        run: |
+          ansible-lint
+        
 
-      - name: Run ansible-lint
-        # replace `main` with any valid ref, or tags like `v6`
-        uses: ansible-community/ansible-lint-action@6.3
+
