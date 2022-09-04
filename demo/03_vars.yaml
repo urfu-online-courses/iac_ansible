@@ -3,7 +3,7 @@
   name: Playbook with Vars
 
   vars:
-    git_repo_link: https://github.com/urfu-online-courses/streamlit_demo_app.git
+    git_repo_link: https://github.com/urfu-online-courses/ml_fastapi.git
     project_path: /home/andrey/projects/ansible
 
   tasks:
