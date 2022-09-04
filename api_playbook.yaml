@@ -42,4 +42,3 @@
       ansible.builtin.pip:
         requirements: '{{ project_path }}/requirements.txt'
         virtualenv: '{{ project_venv }}'
-

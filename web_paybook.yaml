@@ -38,7 +38,7 @@
         repo: '{{ git_repo_link }}'
         version: main
         dest: '{{ project_path }}'
-    
+
     - name: Install Required Python Packages
       ansible.builtin.pip:
         requirements: '{{ project_path }}/requirements.txt'
