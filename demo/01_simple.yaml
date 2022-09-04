@@ -1,0 +1,10 @@
+---
+- hosts: all
+  name: Demo Playbook
+
+  tasks:
+    - name: Install Git
+      become: true
+      ansible.builtin.apt:
+        pkg: git
+        state: present

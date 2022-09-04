@@ -1,0 +1,20 @@
+---
+- hosts: all
+  name: Playbook with Vars
+
+  vars:
+    git_repo_link: https://github.com/urfu-online-courses/streamlit_demo_app.git
+    project_path: /home/andrey/projects/ansible
+
+  tasks:
+    - name: Install Git
+      become: true
+      ansible.builtin.apt:
+        pkg: git
+        state: present
+
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: '{{ git_repo_link }}'
+        version: main
+        dest: '{{ project_path }}'

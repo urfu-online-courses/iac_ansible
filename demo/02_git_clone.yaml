@@ -1,0 +1,16 @@
+---
+- hosts: all
+  name: Playbook Clone Git Repo
+
+  tasks:
+    - name: Install Git
+      become: true
+      ansible.builtin.apt:
+        pkg: git
+        state: present
+
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: https://github.com/urfu-online-courses/streamlit_demo_app.git
+        version: main
+        dest: /home/andrey/projects/ansible_streamlit
